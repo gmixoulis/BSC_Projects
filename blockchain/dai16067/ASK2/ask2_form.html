@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- JSFormValidation.html -->
+<html >
+<head>
+  <meta charset="utf-8">
+  <title>HTML Form Input Validation Using JavaScript</title>
+  <link rel="stylesheet" href="JSFormValidation.css">
+ 
+</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+	
+	function registration()
+	{
+
+		var name= document.getElementById("txtName").value;
+		var email= document.getElementById("txtEmail").value;
+		
+		var info = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+    		.map(item => item.value)
+    		.join(',');
+		
+		var selected = $('select option:selected');
+  		var area= selected.parent().attr('label');
+		 
+		
+		var age= Array.from(document.querySelectorAll('input[type=radio]:checked'))
+    		.map(item => item.value)
+    		.join(',');
+		
+        //email id expression code
+		var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+		var letters = /^[A-Za-z]+$/;
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if(name=='')
+		{
+			alert('Please enter your name');
+			
+		}
+		else if(!letters.test(name))
+		{
+			alert('Name field required only alphabet characters');
+			
+		}
+		else if (info === "")
+		{
+				alert('Choose one info checkbox')
+		}
+		
+		else if(email=='')
+		{
+			alert('Please enter your user email');
+			
+		}
+		else if (!filter.test(email) && email.length<15)
+		{
+			alert('Invalid email');
+			
+		}
+		
+		
+		
+		else
+		{	   	 
+			  	                            
+               var textToSave = "<html><head> </head> <body> <h3>"+name+ "</h3><br> <h3> "+age+"</h3><br> <h3> "+info+"</h3><br> <h3> "+area+"</h3><br> <h3> "+email+ "</body> </html>"
+			   var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+			   var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+			   var fileNameToSaveAs = 'emfanizo.html';
+
+			   var downloadLink = document.createElement("a");
+			   downloadLink.download = fileNameToSaveAs;
+			   downloadLink.innerHTML = "Download File";
+			   downloadLink.href = textToSaveAsURL;
+			   
+			   downloadLink.style.display = "none";
+			   document.body.appendChild(downloadLink);
+
+			   downloadLink.click();
+			   // Redirecting to other page or webste code. 
+			   alert('thank u');
+		}
+	}
+   
+   function clearForm() {
+   // Remove class "errorBox" from input elements
+	   var elms = document.querySelectorAll('.errorBox');  
+	   for (var i = 0; i < elms.length; i++) {
+		  elms[i].classList.remove("errorBox");
+	   }
+
+	   // Remove previous error messages
+	   elms = document.querySelectorAll('[id$="Error"]');  // id ends with Error
+	   for (var i = 0; i < elms.length; i++) {
+		  elms[i].innerHTML = "";
+	   }
+
+	   // Set initial focus
+	   document.getElementById("txtName").focus();
+}
+	</script>
+
+
+
+<body>
+	<header>Φόρμα Επικοινωνίας</header>
+  
+ <main>
+  <form id="formTest" method="get" action="processData">
+   <table>
+    <tr>
+      <td><label for="txtName">Ονοματεπώνυμο<span class="required">*</span></label></td>
+		<td><input type="text" id="txtName" name="name"></td></tr>
+    
+   
+    <tr>
+      <td>Ηλικία (διάλεξε ένα από τα παρακάτω) </td>
+      	<td>
+			<input type="radio" name="age3" value="17">Έως 17
+          <input type="radio" name="age3" value="30">18 Έως 30
+		 <input type="radio" name="age3" value="40">31 Έως 40
+		  <input type="radio" name="age3" value="55">41 Έως 55 
+		  <input type="radio" name="age3" value="65">56 Έως 65
+	<input type="radio" name="age3" value="66">66 και άνω </td></tr>
+     
+    <tr>
+      <td>Τι πληροφορίες θέλετε (διαλέξτε όσα θέλετε) </td>
+      <td><label><input  type="checkbox" name="info" value="hotel">Ξενοδοχείο</label>
+          <label><input  type="checkbox" name="info" value="museum">Μουσεία</label>
+          <label><input  type="checkbox" name="info" value="Достопримечательности (Αξιοθέατα)">Αξιοθέατα</label>
+		  <label><input  type="checkbox" name="info" value="food">Εστιατόριο-Φαγητό</label></td></tr>
+      
+    	
+	  <tr>	<td> Περιοχή που σας ενδιαφέρει  </td>
+		<td><select  name="opt" multiple size="4">
+			
+				<optgroup  label="Κεντρική Μακεδονία" >
+					<option  name="area" value="thessaloniki">Θεσσαλονίκη</option>
+					<option  name="area" value="veroia">Βέροια</option>
+					<option  name="area" value="edessa">Έδεσσα</option>
+					<option  name="area" value="kilkis">Κιλκίς</option>
+				</optgroup>
+				
+				<optgroup label="Δυτική Μακεδονία">
+					<option  name="area" value="kozani">Κοζάνη</option>
+					<option  name="area" value="florina">Φλώρινα</option>
+					<option  name="area" value="grevena">Γρεβενά</option>
+				</optgroup>
+				</select></td> </tr>
+    <tr>
+      <td><label for="txtEmail">Email<span class="required">*</span> </label></td>
+		<td><input type="text" id="txtEmail" name="email"></td></tr>
+      
+    
+      <td>&nbsp;</td>
+	  
+      <td><input type="submit" value="Download" class="btn" onclick="registration()" >
+		  <input type="reset" value="Clear" id="btnReset"></td>
+      
+    </table>
+  </form>
+	 </main>
+</body>
+</html>

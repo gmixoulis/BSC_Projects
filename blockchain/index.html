@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="el">
+ <head>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-tofit=no">
+ <script>
+      
+ </script>
+ 
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ <title>Zaria</title>
+ </head>
+ <body style = "margin: 2em;">
+ <h1>DApp Ζάρια</h1>
+ <h2>Παίξε με την τύχη σου για να κερδίσεις 1 ether:  </h2>
+
+ <h3>πρώτα διάλεξε έναν αριθμό</h3>
+ <button  class="btn btn-primary" onclick="myFunction(0,9,'prandom') ">Get random
+ </button>
+ <div> <label id="prandom" required="true" > </label></div> 
+ <br><br>
+ <form id="contract-form">
+ <div class="form-group">
+ <label for="Sender Address">Διεύθυνση σου (ETH)</label>
+ <input value="" type="text" class="form-control" id="fromAddress" ariadescribedby="fromAddressHelp" placeholder="Εισάγετε την διεύθυνσή σας"
+required="true">
+ <small id="fromAddressHelp" class="form-text text-muted">Θα πρέπει τελικά να
+δώσετε έγκριση της μεταφοράς από το Metamask.</small>
+ </div>
+ <div id="accountAddress"></div><br>
+     
+       
+       		
+
+ <div class="form-group">
+    <label for="CheckRadio">Στοιχημάτησε αν θα έχει η μάνα μεγαλύτερο ή μικρότερο από το ποσό σου.</label> <br>
+	<input type="radio" name="IsHigher" id="higher" value="Higher">Η μάνα θα εμφανίσει μεγαλύτερο αριθμό<br>
+	<input type="radio" name="IsHigher" id="lower" value="Lower" > Η μάνα θα εμφανίσει μικρότερο αριθμό<br>
+    <small id="chooseHelp" class="form-text text-muted" required="true">Θα πρέπει να επιλέξεις ένα.</small>
+</div> 
+
+
+<div class="form-group">
+ <label for="Amount">Ποσό</label>
+ <input value="0.1" type="text" class="form-control" id="amount" ariadescribedby="amountHelp" placeholder="Amount to send in ETH" required="true">
+ <small id="amountHelp" class="form-text text-muted">Πόσα χρήματα θα
+στείλετε σε Ether.</small>
+ </div>  
+ <br>   
+ <div class="form-group">
+ <label for="Receiver Address">Διεύθυνση Μάνας (ETH)</label>
+
+ <input value="0xC10674bFce6a9933db3Dd6F4ee895b8970Ab5b78" type="text"
+class="form-control" id="toAddress" aria-describedby="toAddressHelp"
+placeholder="Enter the receipient address" required="true"> 
+ <small id="toAddressHelp" class="form-text text-muted">Εισάγετε την
+διεύθυνση (δημόσιο κλειδί) του πορτοφολιού του παραλήπτη.</small>
+ </div>
+ 
+ <button type="submit" class="btn btn-primary">Αποστολή</button>
+                    <div id="deposit-result">Πατώντας το κουμπί "Αποστολή" τα χρήματά σας θα
+                    πιστωθούν στο συμβόλαιο.</div>
+</form>
+<form id="rollgame">
+<div> <p class="text-capitalize font-weight-bold" style="font-size: x-large;">Roll the dice </p></div>
+    <button type="submit" id="rol" class="btn btn-primary" >
+      Roll it
+    </button>
+    <br><br>
+          <div> <p id="manaroll" class="text-capitalize font-weight-bold" style="font-size: x-large; color: blue;"></p></div>   
+
+        </form>
+        <br><br>
+        <button onclick="window.open('https://ropsten.etherscan.io/address/'+document.getElementById('fromAddress').value)" type="button">
+            Your History</button>
+
+
+
+ <script>
+        function myFunction(min, max, name) {
+          var y= Math.floor(Math.random() * (max - min)) + min;
+          document.getElementById(name).innerHTML=y;
+        }
+</script>
+
+ 
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+    
+    <script src="web3.min.js"></script>
+    <script src="contractAbi.js"></script>
+    
+<script>
+    
+    
+        if ( typeof web3 != 'undefined' ) {
+        web3 = new Web3(web3.currentProvider);
+        } else {
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+</script>
+
+<script>
+    
+    var contractAddress="0xB918D7B4d9Cc97B0FA8929386971D227B354A38C";
+    var ApprovalContract= new web3.eth.Contract(abi,contractAddress);
+    
+    
+    var prandom
+  
+    var fromAddress ;
+    var amount;
+    var toAddress;
+    var check;
+            //make sure that addresses are legit
+    $('#contract-form').submit(function() {
+        event.preventDefault();
+    fromAddress = $('#fromAddress').val();
+    toAddress = $('#toAddress').val();
+    amount= $('#amount').val();
+    prandom=parseInt(document.getElementById("prandom").textContent);
+           
+        if (document.getElementById('higher').checked) {
+     check = document.getElementById('higher').value;}
+     if (document.getElementById('lower').checked) {
+     check = document.getElementById('lower').value;
+     
+}
+        if(check==null){
+            alert("πρέπει να διαλέξεις μια επιλογή από τα radio button");
+            location.reload();
+            
+        }
+        if(isNaN(prandom))
+        {
+            alert("rollare το ζάρι!!");
+            location.reload();
+        }
+    
+        if (web3.utils.isAddress(fromAddress) != true) {
+            alert('Δεν δώσατε σωστή την διεύθυνση σας .');
+            return;
+            }
+        if (web3.utils.isAddress(toAddress) != true) {
+            alert('Δεν δώσατε σωστή διεύθυνση της μάνας.');
+            return;
+        }
+        if (amount == 0){
+            alert('Πρέπει να στοιχηματίσετε περισσότερα από 0 ETH');
+            return;}
+        ApprovalContract.methods.deposit(toAddress).send({from: fromAddress, gas:
+                100000, value: web3.utils.toWei(amount, 'ether')},
+        function(error, result) {
+             if (error) {
+                 console.log('error: ' + error);
+            $('#deposit-result').html('<b>Error: </b>' + error);
+        }
+        else {
+             $('#deposit-result').html('Success TX: <b>' + result + '</b>');
+        }
+        }); 
+          
+
+    });
+    $('#rollgame').submit(function() {
+         event.preventDefault(); 
+         var rolled=Math.floor(Math.random() * 11);
+         document.getElementById('manaroll').innerHTML=rolled;
+         
+         if (check=='Higher' && rolled>= prandom )
+         { 
+            ApprovalContract.methods.approve().call({from:
+                toAddress, gas: 300000},
+        function(error, result) {
+             if (error) {
+                 console.log('error: ' + error);
+            $('#deposit-result').html('<b>Error: </b>' + error);
+        }
+        else {
+             $('#deposit-result').html('Success TX: <b>' + result + '</b>');
+        }
+        }); 
+         }
+         else if (check=='Lower' && rolled< prandom )
+         {
+            ApprovalContract.methods.approve().call({from:
+        toAddress, gas: 300000},
+        function(error, result) {
+             if (error) {
+                 console.log('error: ' + error);
+            $('#deposit-result').html('<b>Error: </b>' + error);
+        }
+        else {
+             $('#deposit-result').html('Success TX: <b>' + result + '</b>');
+        }
+        }); 
+         }
+         else{
+            alert(' you lost! ' + check);
+         }
+        });
+   
+
+
+</script>
+
+ </body>
+</html>

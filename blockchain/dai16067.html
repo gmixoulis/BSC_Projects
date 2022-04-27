@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <style>
+
+html,
+body {
+    height: 100%;
+    font: 20px arial, sans-serif;
+    font-weight: bold;
+   
+
+}
+
+ .container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:aliceblue;
+}
+:required {
+  background: red;
+}  
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-tofit=no">
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+        <form class="form-group container" id="myform">
+        <div class="container">
+                <div class="container-fluid" style="width: 100%; height:60% ; background-color:pink;">
+                    <h1>Welcome to my Dapp Dice</h1>
+                    <br> 
+                    <h3>Choose if the dice will be lower or higher than 5</h3>
+                    <div class="form-check" id="filterDay">
+                            <div class="form-group">
+                                   
+                                    <input type="radio" name="IsHigher" id="higher" value="Higher">Higher than 5<br>
+                                    <input type="radio" name="IsHigher" id="lower" value="Lower" > Lower than 5<br>
+                                    <small id="chooseHelp" class="form-text text-muted" required="true">You have to choose one radio button</small>
+                                </div> 
+
+                          </div>
+                        <br>
+                        <h3>Give the ammount:</h3>
+                        <input class="form-control" type="number" min="0" id="ammount" placeholder="Bet NOW!!!"> <br>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" >ROLL IT  AND GOOD LUCK</button>
+                        <br>
+                        <div class="md-form mb-4 pink-textarea active-pink-textarea" style="width: 100%">
+                                <textarea id="form18" class="md-textarea form-control" rows="10" readonly>Results:</textarea>
+                              
+                              </div>  
+                </div>
+              
+              </div>
+      </form>
+
+      <script src="web3.min.js"></script>
+    <script src="contractAbi.js"></script>
+  
+
+   
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous">
+    </script>
+   
+    <script>
+    window.addEventListener('load', async () => {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+            // Request account access if needed
+            await ethereum.enable();
+            // Acccounts now exposed
+            web3.eth.sendTransaction({/* ... */});
+        } catch (error) {
+            // User denied account access...
+        }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+        // Acccounts always exposed
+        web3.eth.sendTransaction({/* ... */});
+    }
+    // Non-dapp browsers...
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+});
+        if ( typeof web3 != 'undefined' ) {
+        web3 = new Web3(web3.currentProvider);
+        } else {
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+    </script>
+
+<script>
+        var contractAddress = "0x07dc4077f33c7bc71643df7029c59339540a0d1a";
+        var Contract = new web3.eth.Contract(abi, contractAddress);
+        var ammount;
+        var check;
+        $("#myform").submit(function() {
+            event.preventDefault(); 
+            var filterDay = $('#filterDay input:radio:checked').val()
+            ammount=$("#ammount").val;
+            alert(val);
+                
+            if (document.getElementById('higher').checked) {
+            check = document.getElementById('higher').value;}
+            if (document.getElementById('lower').checked) {
+            check = document.getElementById('lower').value;
+            
+        }
+                if(check==null){
+                    alert("you have to choose one radio button");
+                    location.reload();
+                }
+
+            Contract.method.WinOrLose(check).send({from: web3.eth.accounts[0],gas: 3000000,value:ammount},
+            function(error,result){
+                if(error)
+                {
+                    console.log(error);
+
+                }
+                else if (result) {
+                    console.log(result);
+                    Contract.method.playerHistory().call({from: web3.eth.accounts[0]},function(error,result){
+                        if(error)
+                        {
+                            console.log("smthing went wrong");
+                        }
+                        else{
+                            $('#form18').append("<br>" + result);
+                        }
+                    })
+                }
+            })
+        
+        
+        });
+            
+            
+    
+    
+</script>
+
+</body>
+</html>

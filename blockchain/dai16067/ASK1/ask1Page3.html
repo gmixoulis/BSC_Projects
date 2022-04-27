@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Πόλεις της Ελλάδος</title>
+  <link rel="stylesheet" href="ask1c.css">
+  <style type="text/css">
+	  div{display: none;}
+	  
+  </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+	$.noConflict();
+jQuery(document).ready(function($){
+    $("button").click(function(){
+		$("a1").fadeOut(1000);
+        $("div").fadeIn(1000);
+		var img = $("img");
+        img.animate({height: '300px', opacity: '0.4'}, "slow");
+        img.animate({width: '300px', opacity: '0.8'}, "slow");
+        img.animate({height: '100px', opacity: '0.4'}, "slow");
+        img.animate({width: '100px', opacity: '0.8'}, "slow");
+		$("h2").css("color",
+					 "red");
+		
+		$("tr#info td").css("font-weight","bold");
+		e.stopPropagation();
+
+    });
+});
+	
+</script>
+</head>
+<body>
+	<header> <h1>Πόλεις της Ελλάδος</h1></header>
+  <div class="container">
+    <main>
+      <h2>Κοζάνη</h2>
+     
+		<table id="t01">
+  <tr >
+    <th>Ιστορία</th>
+    <th>Καρναβάλι</th> 
+     <th rowspan="2" class="id1" > <img id="preload" onload="fadeIn(this)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Mamatsios.jpg/450px-Mamatsios.jpg"    alt="chairch"  width="100px" height="100px"> </th> 
+  </tr>
+  <tr id="info">
+    <td> <div >Αρχαιότητες από την προϊστορική εποχή μέχρι τη Βυζαντινή περίοδο έχουν ανακαλυφθεί σε πολλά σημεία της πόλης. Στα ανατολικά της <a href="https://en.wikipedia.org/wiki/Kozani" target="_blank">Κοζάνης</a>, έχει ανασκαφεί νεκρόπολη, η οποία χρονολογείται από την εποχή του Σιδήρου.</div></td>
+    
+	<td><p>Το 1392 άποικοι προερχόμενοι από την Πρεμετή, το Βυθικούκι και την Κόζδιανη της Ηπείρου, κατάφυγαν κυνηγημένοι από τους Τουρκαλβανούς στην περιοχή βόρεια της Σέλιτσας (που μέχρι σήμερα ονομάζεται Παλιοκόζδιανη) και στη συνέχεια μεταναστεύοντας ανατολικά συνάντησαν τον χριστιανικό οικισμό στα Καλύβια.</p></td>
+    
+  </tr>
+  <tr>
+    <td>ΟΙ αρχαιότητες που βρέθηκαν εδώ μαρτυρούν την ύπαρξη μιας από τις αρχαιότερες πόλεις της αρχαίας Ελιμιώτιδας (ή Ελίμειας), της οποίας η ακρόπολη βρισκόταν στο λόφο του «Αγίου Ελευθερίου»</td>
+    <td><p>Οι κάτοικοι των Καλυβιών δεν τους αποξένωσαν, αλλά τους υποχρέωσαν να χτίσουν τις κατοικίες τους ανατολικότερα. Οι νέοι κάτοικοι ονόμασαν την περιοχή Τζαμουριά διασώζοντας το πατρωνύμιο της παλιάς τους περιοχής. Σήμερα η περιοχή ονομάζεται Τζάμπρα. Επίσης το βραχώδη λόφο επάνω από την Τζάμπρα τον ονόμασαν Σκρίκα ή Σκίρκα (Σκ’ρκα), που σημαίνει βραχώδες ύψωμα.</p></td>
+	<th rowspan="2" class="id1"> <a1> <img id="preload"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Fanos.jpg/200px-Fanos.jpg"  d  alt="karnavali" width="100px" height="100px" > </a1>  </th>
+  </tr>
+  <tr>
+    <td><p>Στα νοτιοδυτικά της σύγχρονης πόλης, στο λόφο Σιόποτο, υπήρχε οικισμός ο οποίος ονομαζόταν Καλύβια, μεταξύ 1100 και 1300, ίχνη του οποίου υπάρχουν ακόμα.</p></td>
+    <td><p>Αν και υπάρχουν διάφορες εκδοχές για το όνομα της πόλης η επικρατέστερη είναι πως οι άποικοι αυτοί της Ηπείρου ονόμασαν το νέο οικισμό Κόσδιανη που στη συνέχεια μετατράπηκε σε Κόζιανη και οι μετέπειτα λόγιοι το μετασχημάτισαν σε Κοζάνη. Οι κάτοικοι παλιών και νέων οικισμών ενώνονται σε μια νέα ενιαία κοινότητα, χτίζουν εκκλησία, κατασκευάζουν υδραγωγεία και κρήνες. Πρώτη καταγεγραμμένη αναφορά στην Κοζάνη γίνεται σε σουλτανικό φιρμάνι του 1528, σαν οικισμός με 91 σπίτια, 23 εργένηδες και 15 χήρες.</p></td>
+    
+  </tr>
+</table>
+		<button>CLICK ME!</button>
+    </main>
+    <nav>
+     	<a href="ask1Page2.html"> Αθήνα </a> <br>
+		<a href="index.html"> Θεσσαλονίκη</a> <br>
+		<a href="ask1Page3.html"> Κοζάνη </a> <br>
+	  
+   
+    </nav>
+    <aside>
+      <h4> <a href="index.html" >Επιστροφή Στην Αρχική Σελίδα</a></h4>
+    </aside>
+	
+  </div>
+  <footer>Copyright @dai16067</footer>
+</body>
+</html>

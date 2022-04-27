@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+  font-size: 62.5%;
+  font-family: serif;
+}
+
+
+.picture{
+	float: right;
+	margin: auto;
+	flex: auto;
+}
+body {
+  font-size: 1.8rem;
+  line-height: 1.618;
+  
+  margin: auto;
+  color: black;
+  background-color: #f9f9f9;
+  padding: 13px;
+  margin: 0;
+  
+  max-width: inherit;
+  background: #fff;
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 684px) {
+  body {
+    font-size: 1.53rem;
+  }
+}
+@media (max-width: 382px) {
+  body {
+    font-size: 1.35rem;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: 700;
+  
+}
+h1 {
+  font-size: 2.35em;
+}
+h2 {
+  font-size: 2em;
+ font-weight: bold;
+}
+h3 {
+  font-size: 1.75em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
+}
+header, footer {
+  font-size: large;
+  text-align: center;
+  padding: 0.3em 0;
+  background-color: black;
+  color: #f9f9f9;
+}
+nav {
+  background: #eee;
+}
+main {
+  background: #f9f9f9;
+}
+aside {
+  background: #eee;
+}
+.container {
+  display: flex;
+  flex: 1;
+}
+main {
+  flex: 1;
+  padding: 0 20px;
+}
+nav {
+  flex: 0 0 180px;
+  padding: 0 10px;
+  order: -1;
+}
+aside {
+  flex: 0 0 130px;
+  padding: 0 10px;
+}
