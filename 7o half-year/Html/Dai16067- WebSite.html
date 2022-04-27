@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html lang="en">	<!-- Ορισμός Γλώσσας -->
+
+
+  <head>
+  <meta charset="utf-8" />
+       <title>
+        The Gym - Personal Training
+       </title>
+	   <meta name= "viewport" content="width=divice-width, initial-scale=1.0">
+	  <!--  parapempei sto slider -->
+	  <link rel="stylesheet" href="blueberry.css" />    <!-- style--> 
+	    <!-- kwdikas js gia ta buttons-->
+		
+      
+	   
+	   <!-- ola ta styles css gia thn istoselida kai ton tropo poy tha fainontai ston xrhsth-->
+	   <style type="text/css"> 
+	    *{         /* css code ,everything extent to the very end of the page*/
+		   margin: 0;
+		   border: 0;
+		   padding: 0;
+		}
+		body{ 
+		   background: #f0f0f0;      /* everything thats included in html document , dld ta xrwmata kai genikes rythmiseis gia thn selida kai to background*/
+		   font: 14px/20px Arial, San-Serif;
+		   color:#555; /*dark gray*/
+		   margin:0;
+		}
+		 h1{    /* style our head lines*/
+			text-align:center; /*  topothetish twn keimenwn sthn selida   */
+			font-size: 180%;  
+			line-height: 120%;
+			padding: 5% 0;   /* gemisma   */
+		}
+		h2{         /* style our h2 tags kyriws gia underlines*/
+			text-decoration:underline;  
+			line-height:280%;
+			padding-left:2%;
+		}
+		h3{           /*style ta h3*/
+			line-height: 110%;
+			padding: 5% 0; /* 5 top-bottom , 0 left-right   */
+			
+		}
+	    p {         /*  style tis paragrafous*/
+		  padding: 1%;
+		}
+		img {       /*  style eikonwn*/
+			text-align:center; /*  topothetish sto kentro ths selidas */ 
+			max-width: 100%; /*  megethos eikonas   */
+			height:auto;
+			width: auto;
+		}
+		a {            /*  style twn kathgoriwn mas- links*/
+			  color: #fff; 
+			  text-decoration: none;
+			  font-weight: bold;
+		}
+		a:hover {           /* add a hover style to our  links - the navigation*/
+			color: #fff;
+			text-decoration: underline;
+		}
+		header{ /*  exei mesa to navigator kai to logo dld h arxh ths selidas   */
+		    background:#405580;
+			width:100%;
+			height:86px;
+			position: fixed;  /*  metaferei thn epikefalida mas panta sthn arxh ths selidas kathws o xrhsths katevainei pio katw  */
+			top: 0;
+			left:0;
+			z-index: 100;
+			opacity: 0.90;   /* to kanei diafanes wste na fainontai apo mesa tou oi eikones ta keimena k.t.l.p.  */
+		}
+		#logo {     /* epeksergasia tou logo */
+			margin: 20px;
+			float: left;
+			width:200px;
+			height:60px;
+		    background: url(http://www.w3newbie.com/wp-content/uploads/the-gym.png) no-repeat center;
+		}
+		
+		nav {    /*style to navigation  */
+			float: right;
+			padding: 35px 20px 20px 0;
+			
+		}
+		#menu-icon{   /* epeksergasia tou menu icon pou emfanizete stis kinhtes syskeyes */
+		   display:hidden; 
+		   width:40px;
+		   height: 40px;
+		   background: url(http://www.w3newbie.com/wp-content/uploads/icon.png) center;  /* eisagwgh ths eikonas tou menu */
+		}
+		
+		a:hover#menu-icon {
+		  border-radius: 4px 4px 0 0;
+		}
+		ul {  /* unorder list style  */
+		  list-style: none;
+		  
+		}
+		
+		nav ul li{   /* style tis unorder listes mesa sto nav */
+			display:inline-block;
+			float:left;
+			padding: 10px;
+		}
+		
+		
+		.current{ 
+		   color: #FFF;
+		   text-decoration: underline; /* gia na katalavainoume se pia selida vrhskomaste tha einai  me underline h antistoixh kathgoria */
+		}
+		 
+		#doc {
+			margin: 40px 0;
+		}
+		#content {
+		   margin:0 auto;
+		   max-width: 1140px;
+		   margin-top:110px;
+		}
+		.blueberry{ /* style thn klash blueberry ths jquerry */
+		   max-width: 960p;
+		   margin-top: 110px;
+		}
+		
+		section { /* style ta 3 sections */
+		  width: 29%;
+		  float: left;
+		  margin: 2% /* top-bottom */; 2%/* left-right*/;
+		  text-align: center;
+		}
+		.clear { /* style thn clear class*/
+		  clear:both;
+		}
+		article{ /* style tou article dhladh topothetoume sthn selida to video */
+		  float: left;
+		  margin: 0 auto;
+		  width:50%;
+		  height: auto;
+		  padding:4%;
+		  
+		}
+		aside{  /* style -topothetisi tou schedule sthn selida */
+		   float:right;
+		    margin: 0 auto;
+		    width:35%%;
+		    height: auto;
+		    padding:3%;
+		}
+		ul.gym li{ /*  pali gia to schedule otan tha mikrainei na phgainei katw apo to video*/
+		   padding-left: 3%;
+		   
+		}
+		
+		footer{  /* geniko style tou footer*/
+			background: #333333;
+			width:100%;
+			overflow:hidden; /* kalyptei thn perioxh pou den xreiazomaste */
+			opacity: 0.90;
+		}
+		
+		footer p, footer h3 { /* style tou keimenou mesa sto footer */
+		  color: #FFF;
+		}
+		
+		footer p a { /*  style kai to xrwma gia thn paragrafo tou footer */
+		  color: #FFF;
+		  text-decoration: none;
+		}
+		
+		ul.social li { /* style ta social media icons - thn lista*/
+			display: inline;
+		}
+		
+		ul.social li img { /* style gia ta eikonidia twn social media */
+		    height: 50px;
+		}
+		
+		footer.second{ /* style tou deyterou footer*/
+			border-top: 1px solid #4DE50;
+			background-color: #333333;
+			max-height: 50px;
+			text-align: center;
+			opacity: 0.95; /*ligo pio skoteino gia na ksexwrizei */
+		}
+		
+		/*-------------------MEDIA!!!-------------*/
+		/* Media types describe the general category of a given device. Although websites are commonly designed with screens in mind, you may want to create styles that target special devices such as printers or audio-based screenreaders.*/
+		@media screen and (max-width: 478px) {  /* media queries*/
+				body{
+					position:absolute;
+					
+				}
+		
+		}
+		/* second media query*/
+		@media screen and (max-width: 740px) {
+		        header{
+				     position:absolute;
+				}
+				#menu-icon { /* to menu icon stis kinhtes syskeyes */
+					display:inline-block;
+				}
+				nav ul, nav:active ul {
+					display:none; /* thelw na emfanizete mono stis kinhtes syskeyes*/
+					position:absolute;
+					padding:20px;
+					background: #405580;
+					border : 1px solid #FFF;
+					right: 20px;
+					top: 60px;
+					width: 50%;
+					border-radius: 2px 0 2px 2px;}
+				nav li{
+						text-align: center;
+						width: 100%;
+						padding:10px 0;
+						margin: 0;
+					}
+				nav:hover ul { /* style to hover thn unorder list  */
+				display:block ;
+				}
+				section {
+					float:left;
+					width 100%;
+					margin: 0;
+					padding: 0; }
+				article{
+					float:left;
+					width 100%;
+					margin: 0;
+					padding: 0; }
+				aside {
+					float:left;
+					width 100%;
+					margin: 0;
+					padding: 0; }
+					
+		}
+		
+	   </style> 
+	   <!-- gia ton img slider ena jquery - javascript link wste na syndeso ton slider me ton kwdika m -->
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>       <!-- javascript-->
+	   <script src="jquery.blueberry.js"></script>
+	   
+	   <script> <!-- jquerry code gia ton image slider-->
+	   $(window).load(function(){
+			$('.blueberry').blueberry();
+	   });
+	   
+	   </script>
+  </head>
+
+
+  <body>		
+
+       <header>
+	     <a href="#" id="logo"></a>
+		<nav>     
+		         <a href="#" id="menu-icon"></a> <!-- to menu icon gia tis kinhtes syskeyes-->
+				
+         
+				 <ul> <!-- unorder list-->
+				     <li><a href="#" class="current"> Home</a></li> <!-- ston kwdika mou mono to Home douleyei ola ta ypoloipa den exoyn gemisei me kapoio kwdika opote kai den douleyoun opws kai ta social media parakatw-->
+					 <li><a href="#" > Trainers</a>  </li> <!-- links gia to navigation mas dhladh to  tis kathgories tis selidas mas-->
+					 <li><a href="#" > Plans</a>  </li>
+					 <li><a href="#" > Contact</a>  </li>
+					 <!-- kwdikas gia ta koumpia back-forward-->
+					<button type="button"
+					onclick="history.back();"> Back </button>  
+					<button type="button"
+					onclick="history.forward();">Forward</button> 
+				 </ul>
+		
+		
+		</nav>
+	   </header>
+	   <div id="doc"><!-- eisagwgh tou img slider mazi me thn eisagwgh twn eikonwn-->
+	       <div id="content">
+		        <div class="blueberry"><!-- to onoma tou slider -->
+		            <ul class="slides">
+						<li><img src="http://www.w3newbie.com/wp-content/uploads/inside-gym.png" /> </li><!-- eisagwgh eikonwn se listes gia na mpoum sto slider-->
+						<li><img src="http://www.w3newbie.com/wp-content/uploads/push-ups.png" /> </li>
+						<li><img src="http://www.w3newbie.com/wp-content/uploads/chest-fly.png" /> </li>
+						<li><img src="http://www.w3newbie.com/wp-content/uploads/training.png" /> </li>
+					</ul>					
+				</div>   
+		   </div>
+	   </div>
+       <section>
+	        <img src="http://www.w3newbie.com/wp-content/uploads/trainers.png" /><!-- eisagwgh eikonas-->
+			<h1>Best Trainers Around! </h1>   <!-- titlos  gia thn eikona kai gia thn paragrafo-->
+			<p> Combining strength and conditioning with the highly beneficial mind body principles of Pilates, we bridge the gap between athletic conditioning and healthy core-centred movement – creating a complete balance in full body postural strength, alignment, tone and mobility. Low impact in nature, it’s a highly empowering, uplifting and rewarding experience for the novice, the pro and all of us in between!</p>
+	   </section> <!-- paragrafos kai mikro keimeno gia thn eikona p einai pio panw-->
+	   <section>
+	        <img src="http://www.w3newbie.com/wp-content/uploads/location.png" />
+			<h1>Local & Convenient. </h1>
+             <p> Keen to explore how we can bring Heartcore to your employee benefit and wellness programme – reach out via email on wellness@heartcore.co.uk.  </p>
+		</section>
+	   <section>
+	        <img src="http://www.w3newbie.com/wp-content/uploads/check.png" />
+			<h1>Giftcard </h1>
+			 <p>  Make someone's day special with a gift voucher to the value of your choice - redeemable against 
+any class pack, personal training or workshop.</p>
+		</section>
+			<div class="clear"> </div>
+			<article>  <!-- xrhsimopoihte synhuws sta blogs gia arthra alla mas voleyei gia to video-->
+	          <iframe width="560" height="315" src="https://www.youtube.com/embed/z57X5s320eY" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>   <!-- etoimos kwdikas apo to youtube gia enswmatosh video-->		    
+				</article>
+				<aside> 
+				    <h2>Group Class Schedule:</h2>
+					<ul class="gym"> <!-- unorder list kai klash kainourgia-->
+					     <li> <h3> Studio  Cycling at 8 a.m -60mins</h3> </li>
+						 <li> <h3> Abs Sculpting at 12 p.m -30mins </h3> </li>
+						 <li> <h3> Power Yoga at 10 a.m -60mins</h3> </li>
+						 <li> <h3> Boot camp at 2 p.m -30mins</h3> </li>
+						 <li> <h3> Butt Sculpting at 4 p.m -60mins</h3> </li>
+					</ul>
+				</aside>
+		<div class="clear"> </div> <!-- ousiastika afhnei megala kena gia kainourgies paragrafous kai sections-->
+		    <section> <!-- kainourgio section diaforetikes plhrofories-->
+			<h1>Ladies Card </h1>
+				  <img src="http://www.w3newbie.com/wp-content/uploads/ladies-gym.jpg" />
+<!--paragraph-->  <p>  Experience the roots of Heartcore’s Dynamic Pilates, developing confidence with our approach and unique style of CoreFormer™ training. In this workshop you'll learn to better understand the mind body principles of Pilates and how we fuse them through the foundational exercises of our Signature class. Guiding you to recognise the correct posture in your body through a series of strengthening and opening movements, with the time to experience and really feel the postural benefit in correct muscle recruitment. Learn how to modify positions, enhance mobility and techniques to connect deeply to your core. We hope to see some ‘a-ha’ moments before the 90 minutes is out, and a warmth to your core, just so you remember where it is for your next class!</p>
+			</section>
+			<section>
+			<h1>The Gym Floor </h1>
+				  <img src="http://www.w3newbie.com/wp-content/uploads/gym-floor.jpg" />
+			 <p> That spirit of care has formed the powerful blueprint for everything we do at Heartcore. With an amazing team of compassionate and magical people, finely designed and effective training methods, and truly iconic studios; Heartcore is home to a genuinely positive, energised and welcoming soul-to-soul culture. </p>
+			</section>
+			<section>
+			<h1>Free Weights </h1>
+				  <img src="http://www.w3newbie.com/wp-content/uploads/free-weights.jpg" />
+			 <p> Working exactly that, a full body workout from the inside out. Top through to bottom. In our Signature class, you’ll be equally mobilised, strengthened and feeling allover life-ready and set. </p>
+			
+          
+			</section>
+			
+			<footer>  <!-- to footer einai to telos ths selidas pou grafoume kapoies plhrofories gia thn istoselida -->
+			    <section>
+				    <h3><b> The Gym </b> </h3>
+					<p><b> +44 207 305 7760</b> <br><br>  <!-- diplo keno kai paragrafos -->
+					HEARTCORE KENSINGTON<br>
+					11A STRATFORAD ROAD W8 6RF<br>
+					Dynamic Pilates <br>
+					Personal Training<br>
+					kensington@heartcore.co.uk</p3>
+				</section>
+			    <section>
+				    <h3>Connect With Us!  </h3>  
+					<ul class="social"> <!-- klash me unorder lists gia thn eisagwgh twn social media -->
+						<li> <a href="#"><img src="http://www.w3newbie.com/wp-content/uploads/facebook1.png" /></a>  </li> <!-- eosagwgh ths eikonas tou social media  button sthn lista kai href gt anaferontai sto antistoixo social media pou den exw syndesh-->
+						<li> <a href="#"><img src="http://www.w3newbie.com/wp-content/uploads/googleplus.png" /></a>  </li>
+						<li> <a href="#"><img src="http://www.w3newbie.com/wp-content/uploads/twitter1.png" /></a>  </li>
+						<li> <a href="#"><img src="http://www.w3newbie.com/wp-content/uploads/youtube1.png" /></a>  </li>
+						</ul>
+				</section>
+				<section>
+				   <li> <a href="#"><img src="http://www.w3newbie.com/wp-content/uploads/weight-lifter.png" />
+				</section>
+			
+			</footer>
+			
+			
+			  <footer class="second"> <!-- diaforetiko footer gia diaforetikh metaxeirhsh tou copyright-->
+			     <p>@Copyright - George Michoulis: dai16067 , 2018 . </p>
+				  <!-- Embeded JavaSCRIPT for back-forward button--> 
+   
+      
+				 
+			  </footer>
+			
+  
+  
+  </body>
+</html>
